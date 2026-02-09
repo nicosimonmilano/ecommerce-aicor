@@ -1,6 +1,6 @@
 # Proyecto Full-Stack Aicor (Ecommerce)
 
-Este proyecto es una aplicación de comercio electrónico (Ecommerce) Full-Stack desarrollada como parte de la prueba de aptitud técnica. Utiliza **Laravel 11** para el backend (API REST) y **React** junto con **Tailwind CSS** para el frontend.
+Este proyecto es una aplicación E-commerce Full-Stack desarrollada como parte de la prueba de aptitud técnica. Utiliza **Laravel 11** para el backend (API REST) y **React** junto con **Tailwind CSS** para el frontend.
 
 ## 📋 Requisitos Previos
 
@@ -86,4 +86,4 @@ php artisan test
 -   `.github/workflows`: Configuración de integración continua.
 
 ---
-**Autor**: [Tu Nombre]
+**Autor**: Nicolas Simon Milano
