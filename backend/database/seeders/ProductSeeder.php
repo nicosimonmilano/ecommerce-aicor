@@ -12,7 +12,7 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        // Datos de prueba para la tienda (10 productos tecnológicos)
+        // Datos de prueba para la tienda (32 productos tecnológicos divididos en 2 paginas, 16 en cada una)
         $products = [
             [
                 'name' => 'Laptop Gamer Legion 5',

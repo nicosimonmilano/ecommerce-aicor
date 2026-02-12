@@ -1,0 +1,25 @@
+{
+  "name": "ecommerce_aicor",
+  "version": "1.0.0",
+  "description": "Este proyecto es una aplicación E-commerce Full-Stack desarrollada como parte de la prueba de aptitud técnica. Utiliza **Laravel 11** para el backend (API REST) y **React** junto con **Tailwind CSS** para el frontend.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npm run dev --prefix frontend\" \"cd backend && php artisan serve\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicosimonmilano/ecommerce-aicor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/nicosimonmilano/ecommerce-aicor/issues"
+  },
+  "homepage": "https://github.com/nicosimonmilano/ecommerce-aicor#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
