@@ -3,6 +3,8 @@ import Navbar from './components/Navbar';
 import { CartProvider } from './context/CartContext';
 import ProductList from './components/ProductList';
 import Cart from './pages/Cart';
+import WhatsAppButton from './components/WhatsAppButton'; {/*Boton de whatsapp*/}
+import ShopAssistant from './components/ShopAssistant'; {/*Boton de "chatbot" para dudas frecuentes*/}
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
               <Route path="/login" element={<div className="text-center mt-10"><h1>Login (Próximamente)</h1></div>} />
             </Routes>
           </main>
+          <WhatsAppButton />
+          <ShopAssistant />
         </div>
       </BrowserRouter>
     </CartProvider>

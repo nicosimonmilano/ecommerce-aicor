@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"npm run dev --prefix frontend\" \"cd backend && php artisan serve\""
+    "dev": "concurrently \"npm run dev --prefix frontend\" \"C:\\laragon\\bin\\php\\php-8.3.28-Win32-vs16-x64\\php.exe -S localhost:8002 -t backend\""
   },
   "repository": {
     "type": "git",

@@ -61,13 +61,19 @@ export const CartProvider = ({ children }) => {
         return cart.reduce((total, item) => total + item.quantity, 0);
     };
 
+    // Función para vaciar el carrito
+    const clearCart = () => {
+        setCart([]);
+    };
+
     // Valores que compartimos con toda la app
     const value = {
         cart,
         addToCart,
         removeFromCart,
         updateQuantity,
-        getCartCount
+        getCartCount,
+        clearCart
     };
 
     return (
