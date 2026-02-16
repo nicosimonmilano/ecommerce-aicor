@@ -6,16 +6,23 @@ export default function Cart() {
     const { cart, removeFromCart, updateQuantity, getCartCount } = useContext(CartContext);
     const FREE_SHIPPING_MIN = 100;
 
-    // Calcular el subtotal de los productos
-    const subtotal = cart.reduce((acc, item) => {
-        const price = Number(item.product.price);
-        return acc + (price * item.quantity);
-    }, 0);
+    // 1. Calcular el Subtotal (lo que valen los productos)
+    let subtotal = 0;
+    cart.forEach(item => {
+        subtotal = subtotal + (item.product.price * item.quantity);
+    });
 
+    // 2. ¿Cuánto cuesta el envío?
     const isFreeShipping = subtotal >= FREE_SHIPPING_MIN;
-    const currentShipment = isFreeShipping ? 0 : 1;
-    const total = subtotal + currentShipment;
 
+    let shippingCost = 7.99; // Precio de envío estándar
+    if (isFreeShipping) {
+        shippingCost = 0; // Si llegamos al mínimo, el envío es GRATIS
+    }
+
+    const total = subtotal + shippingCost;
+
+    // 3. Porcentaje para la barra de progreso
     const progress = Math.min((subtotal / FREE_SHIPPING_MIN) * 100, 100);
 
     const handleCheckout = () => {
@@ -130,8 +137,8 @@ export default function Cart() {
                             </div>
                             <p className="text-[11px] mt-3 text-gray-500 leading-tight">
                                 {isFreeShipping
-                                    ? "✨ ¡Enhorabuena! Tienes envío PREMIUM gratuito."
-                                    : `Te faltan ${new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(FREE_SHIPPING_MIN - subtotal)} para envío gratis.`}
+                                    ? "¡Enhorabuena! Tienes envío PREMIUM gratuito." //comillas dobles("") para texto estatico
+                                    : `Suma ${new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(FREE_SHIPPING_MIN - subtotal)} para envío gratis.`} {/*comillas simples('') para texto dinamico */}
                             </p>
                         </div>
 
@@ -145,7 +152,7 @@ export default function Cart() {
                                 <span className={`font-bold ${isFreeShipping ? 'text-green-500' : 'text-gray-900'}`}>
                                     {isFreeShipping
                                         ? 'GRATIS'
-                                        : new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(currentShipment)}
+                                        : new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(shippingCost)}
                                 </span>
                             </div>
                             <div className="pt-6 border-t border-gray-50 flex justify-between text-3xl font-bold text-gray-900">

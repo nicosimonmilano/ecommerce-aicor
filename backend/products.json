@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "name": "Laptop Gamer Legion 5",
+        "name": "Lenovo Legion 5 Gamer",
         "category": "Portátiles",
         "description": "Portátil gaming de alto rendimiento con gráficos RTX 4060 y pantalla de 144Hz.",
         "price": 1299.99,
@@ -19,7 +19,7 @@
     },
     {
         "id": 3,
-        "name": "Monitor 4K Dell",
+        "name": "Dell Monitor 4K UltraSharp",
         "category": "Periféricos",
         "description": "Monitor profesional de 27 pulgadas con resolución Ultra HD y colores precisos.",
         "price": 450.50,
@@ -28,7 +28,7 @@
     },
     {
         "id": 4,
-        "name": "Teclado Mecánico",
+        "name": "Corsair Teclado Mecánico K70",
         "category": "Periféricos",
         "description": "Teclado RGB con switches mecánicos táctiles para una escritura rápida y cómoda.",
         "price": 99.99,
@@ -37,7 +37,7 @@
     },
     {
         "id": 5,
-        "name": "Ratón Gaming Logitech G502",
+        "name": "Logitech G502 Gaming Mouse",
         "category": "Periféricos",
         "description": "El ratón más vendido con sensor Hero 25K y pesas ajustables.",
         "price": 59.99,
@@ -46,7 +46,7 @@
     },
     {
         "id": 6,
-        "name": "Auriculares HyperX Cloud II",
+        "name": "HyperX Cloud II Gaming Headset",
         "category": "Audio",
         "description": "Sonido envolvente 7.1 y comodidad extrema para largas sesiones de juego.",
         "price": 89.95,
@@ -55,7 +55,7 @@
     },
     {
         "id": 7,
-        "name": "Silla Gaming Secretlab",
+        "name": "Secretlab Magnus Pro Gaming Chair",
         "category": "Accesorios",
         "description": "Ergonomía premium y materiales de alta calidad para tu setup.",
         "price": 429.00,
@@ -64,7 +64,7 @@
     },
     {
         "id": 8,
-        "name": "Tablet Samsung Galaxy Tab S9",
+        "name": "Samsung Galaxy Tab S9 Ultra",
         "category": "Tablets",
         "description": "Potencia y pantalla AMOLED para productividad y entretenimiento.",
         "price": 799.99,
@@ -73,7 +73,7 @@
     },
     {
         "id": 9,
-        "name": "Smartwatch Apple Watch Series 9",
+        "name": "Apple Watch Series 9 GPS",
         "category": "Accesorios",
         "description": "Tu compañero de salud y fitness con sensor de oxígeno y pantalla brillante.",
         "price": 449.00,
@@ -82,7 +82,7 @@
     },
     {
         "id": 10,
-        "name": "Disco SSD NVMe 1TB Samsung",
+        "name": "Samsung 990 Pro SSD 1TB NVMe",
         "category": "Componentes",
         "description": "Velocidades de lectura de hasta 7000MB/s para cargar todo al instante.",
         "price": 119.90,
@@ -91,7 +91,7 @@
     },
     {
         "id": 11,
-        "name": "Tarjeta Gráfica RTX 4070",
+        "name": "NVIDIA GeForce RTX 4070 Ti",
         "category": "Componentes",
         "description": "Arquitectura Ada Lovelace con DLSS 3 para jugar a 1440p con todo al máximo.",
         "price": 649.99,
@@ -100,7 +100,7 @@
     },
     {
         "id": 12,
-        "name": "Procesador AMD Ryzen 7 7800X",
+        "name": "AMD Ryzen 7 7800X3D Processor",
         "category": "Componentes",
         "description": "El procesador definitivo para gaming con tecnología 3D V-Cache.",
         "price": 389.00,
@@ -109,7 +109,7 @@
     },
     {
         "id": 13,
-        "name": "Cámara Sony Alpha A6400",
+        "name": "Sony Alpha A6400 Mirrorless",
         "category": "Fotografía",
         "description": "Cámara mirrorless compacta con enfoque automático ultrarrápido ideal para vlogging.",
         "price": 999.00,
@@ -118,7 +118,7 @@
     },
     {
         "id": 14,
-        "name": "Altavoz Bluetooth JBL Charge 5",
+        "name": "JBL Charge 5 Bluetooth Speaker",
         "category": "Audio",
         "description": "Sonido potente y batería para 20 horas, resistente al agua y al polvo.",
         "price": 149.99,
@@ -127,7 +127,7 @@
     },
     {
         "id": 15,
-        "name": "Router WiFi 6 TP-Link AX5400",
+        "name": "TP-Link AX5400 WiFi 6 Router",
         "category": "Periféricos",
         "description": "Velocidades WiFi de hasta 5.4 Gbps para streaming 8K y gaming sin lag.",
         "price": 179.90,
@@ -136,7 +136,7 @@
     },
     {
         "id": 16,
-        "name": "Portátil ASUS VivoBook 15",
+        "name": "ASUS VivoBook 15 OLED",
         "category": "Portátiles",
         "description": "Portátil elegante y ligero para estudio y oficina con pantalla NanoEdge.",
         "price": 699.00,
@@ -145,7 +145,7 @@
     },
     {
         "id": 17,
-        "name": "Webcam Logitech C920",
+        "name": "Logitech C920 HD Pro Webcam",
         "category": "Periféricos",
         "description": "Full HD 1080p para videollamadas nítidas y streaming de calidad.",
         "price": 79.99,
@@ -154,7 +154,7 @@
     },
     {
         "id": 18,
-        "name": "Disco Duro Externo WD 2TB",
+        "name": "WD My Passport 2TB External HDD",
         "category": "Componentes",
         "description": "Almacenamiento portátil y fiable para tus fotos, vídeos y archivos.",
         "price": 65.00,
@@ -163,7 +163,7 @@
     },
     {
         "id": 19,
-        "name": "Silla Secretlab Titan",
+        "name": "Secretlab Titan EVO 2022",
         "category": "Accesorios",
         "description": "La silla definitiva para largas jornadas frente al PC.",
         "price": 499.00,
@@ -172,7 +172,7 @@
     },
     {
         "id": 20,
-        "name": "Micrófono Shure SM7B",
+        "name": "Shure SM7B Vocal Microphone",
         "category": "Audio",
         "description": "El micrófono estándar de la industria para podcasting y estudio.",
         "price": 399.00,
@@ -208,7 +208,7 @@
     },
     {
         "id": 24,
-        "name": "MacBook Air M3",
+        "name": "Apple MacBook Air M3 13\"",
         "category": "Portátiles",
         "description": "Fino, ligero y ahora con el increíble chip M3 de Apple.",
         "price": 1299.00,
@@ -217,7 +217,7 @@
     },
     {
         "id": 25,
-        "name": "iPad Air 5",
+        "name": "Apple iPad Air 5th Gen",
         "category": "Tablets",
         "description": "Potencia del chip M1 en un diseño espectacular.",
         "price": 599.00,
@@ -253,7 +253,7 @@
     },
     {
         "id": 29,
-        "name": "Monitor LG UltraWide 34\"",
+        "name": "LG UltraWide 34\" Curved Monitor",
         "category": "Periféricos",
         "description": "Más espacio para tu productividad y una experiencia de cine.",
         "price": 399.00,
@@ -262,7 +262,7 @@
     },
     {
         "id": 30,
-        "name": "Teclado Razer BlackWidow",
+        "name": "Razer BlackWidow V4 Keyboard",
         "category": "Periféricos",
         "description": "Interruptores mecánicos táctiles y retroiluminación Chroma RGB.",
         "price": 169.99,
@@ -271,7 +271,7 @@
     },
     {
         "id": 31,
-        "name": "Ratón Zowie EC2-C",
+        "name": "Zowie EC2-C Gaming Mouse",
         "category": "Periféricos",
         "description": "El favorito de los jugadores profesionales de eSports por su forma.",
         "price": 69.99,
@@ -280,7 +280,7 @@
     },
     {
         "id": 32,
-        "name": "Alfombrilla SteelSeries QcK",
+        "name": "SteelSeries QcK Heavy Mousepad",
         "category": "Accesorios",
         "description": "Superficie de tela Legendaria para un control total del ratón.",
         "price": 29.99,

@@ -15,15 +15,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // Ruta al archivo JSON
-$json_file = __DIR__ . '/products.json';
+$api = __DIR__ . '/products.json';
 
-if (file_exists($json_file)) {
+if (file_exists($api)) {
     // Leemos el archivo y lo enviamos
-    $json_data = file_get_contents($json_file);
-    echo $json_data;
+    $datos_api = file_get_contents($api); 
+    echo $datos_api;
 } else {
     // Si no existe, devolvemos un error
     http_response_code(404);
-    echo json_encode(["error" => "Archivo de productos no encontrado en " . $json_file]);
+    echo json_encode(["error" => "Archivo de productos no encontrado en " . $api]);
 }
 ?>

@@ -3,27 +3,40 @@ import Navbar from './components/Navbar';
 import { CartProvider } from './context/CartContext';
 import ProductList from './components/ProductList';
 import Cart from './pages/Cart';
-import WhatsAppButton from './components/WhatsAppButton'; {/*Boton de whatsapp*/}
-import ShopAssistant from './components/ShopAssistant'; {/*Boton de "chatbot" para dudas frecuentes*/}
+import WhatsAppButton from './components/WhatsAppButton'; {/*Boton de whatsapp*/ }
+import ShopAssistant from './components/ShopAssistant'; {/*Boton de "chatbot" para dudas frecuentes*/ }
+import Footer from './components/Footer';
+
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import Login from './pages/Login';
+import Profile from './pages/Profile';
+import Orders from './pages/Orders';
 
 function App() {
+  const GOOGLE_CLIENT_ID = "821803811027-sb5hrhophg083mopmenfuc1q12a10c7t.apps.googleusercontent.com"; // Aquí va el ID de Google Cloud que se nos proporciona al crear el cliente
+
   return (
-    <CartProvider>
-      <BrowserRouter>
-        <div className="min-h-screen bg-gray-50 text-gray-900">
-          <Navbar />
-          <main className="container mx-auto p-4">
-            <Routes>
-              <Route path="/" element={<ProductList />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/login" element={<div className="text-center mt-10"><h1>Login (Próximamente)</h1></div>} />
-            </Routes>
-          </main>
-          <WhatsAppButton />
-          <ShopAssistant />
-        </div>
-      </BrowserRouter>
-    </CartProvider>
+    <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+      <CartProvider>
+        <BrowserRouter>
+          <div className="flex flex-col min-h-screen bg-gray-50 text-gray-900">
+            <Navbar />
+            <main className="flex-1 container mx-auto p-4 md:p-8">
+              <Routes>
+                <Route path="/" element={<ProductList />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/orders" element={<Orders />} />
+              </Routes>
+            </main>
+            <Footer />
+            <WhatsAppButton />
+            <ShopAssistant />
+          </div>
+        </BrowserRouter>
+      </CartProvider>
+    </GoogleOAuthProvider>
   );
 }
 

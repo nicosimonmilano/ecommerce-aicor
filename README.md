@@ -10,56 +10,45 @@ Antes de comenzar, asegúrate de tener instalado el siguiente software en tu sis
 2.  **Composer** (Gestor de dependencias de PHP)
 3.  **Node.js** y **npm** (para el frontend)
 4.  **Base de Datos**: MySQL o MariaDB (recomendado usar Laragon o XAMPP)
-5.  **Git**
+5.  **Git**: para clonar el repositorio
 
 ## 🚀 Instalación y Configuración
 
-Sigue estos pasos estrictamente para poner en marcha el proyecto:
+Sigue estos pasos para poner en marcha el proyecto rápidamente:
 
-### 1. Configuración del Backend (Laravel)
+### 1. Preparación
+
+Asegúrate de tener instalado **Node.js** y **PHP** en tu sistema.
 
 ```bash
 # Entrar en el directorio del proyecto
 cd ecommerce_aicor
 
-# Instalar dependencias de PHP
-composer install
-
-# Copiar el archivo de entorno de ejemplo
-cp .env.example .env
-# O en Windows Powerhshell: copy .env.example .env
-
-# Generar la clave de la aplicación
-php artisan key:generate
-
-# Configurar la base de datos en el archivo .env:
-# Abre el archivo .env y configura DB_DATABASE, DB_USERNAME, etc.
-# DB_CONNECTION=mysql
-# DB_HOST=127.0.0.1
-# DB_PORT=3306
-# DB_DATABASE=ecommerce_aicor
-# DB_USERNAME=root
-# DB_PASSWORD=
-
-# Ejecutar las migraciones y seeders (datos de prueba)
-php artisan migrate --seed
-```
-
-### 2. Configuración del Frontend (React + Vite)
-
-```bash
-# Instalar dependencias de Javascript
+# Instalar dependencias generales
 npm install
 
-# Iniciar el servidor de desarrollo
+# Instalar dependencias del frontend
+cd frontend
+npm install
+
+```
+
+### 2. Ejecución (Modo Automático)
+
+El arranque esta simplificado para que con un solo comando funcione todo el ecosistema (Frontend y Backend):
+
+```bash
+# En la carpeta raíz del proyecto
 npm run dev
 ```
 
-### 3. Ejecución
+Este comando:
+1.  Inicia el servidor **Vite (React)** en el puerto habitual (5173).
+2.  Levanta el servidor **PHP** para la API en el puerto "`8002`".
 
-Para trabajar, necesitarás dos terminales abiertas:
-1.  Terminal 1 (Backend): `php artisan serve` (Inicia la API en http://localhost:8000)
-2.  Terminal 2 (Frontend): `npm run dev` (Inicia React, generalmente en http://localhost:5173)
+### 3. Acceso
+-   **Tienda**: http://localhost:5173 
+-   **API (Productos)**: http://localhost:8002/shop_api.php
 
 ## 🧪 Tests
 

@@ -1,26 +1,26 @@
 import { useState, useEffect } from 'react';
 
 const QUICK_RESPONSES = [
-    { 
-        id: 'stock_query', 
-        question: "¿Qué stock hay por categoría?", 
-        answer: "Selecciona una categoría para ver el detalle de stock por marca:" 
+    {
+        id: 'stock_query',
+        question: "¿Qué stock hay por categoría?",
+        answer: "Selecciona una categoría para ver el detalle de stock por marca:"
     },
-    
-    { 
-        id: 2, 
-        question: "¿Cuánto tarda el envío?", 
-        answer: "Para España peninsular, nuestros envíos premium AICOR tardan entre 24 y 48 horas laborales." 
+
+    {
+        id: 2,
+        question: "¿Cuánto tarda el envío?",
+        answer: "Para España peninsular, nuestros envíos premium AICOR tardan entre 24 y 48 horas laborales."
     },
-    { 
-        id: 3, 
-        question: "¿Qué garantía tienen?", 
-        answer: "Todos nuestros productos tecnológicos cuentan con 3 años de garantía oficial y 30 días de devolución gratuita." 
+    {
+        id: 3,
+        question: "¿Qué garantía tienen?",
+        answer: "Todos nuestros productos tecnológicos cuentan con 3 años de garantía oficial y 30 días de devolución gratuita."
     },
-    { 
-        id: 4, 
-        question: "Hablar con un humano", 
-        answer: "¡Sin problema! Puedes usar el botón de WhatsApp de la derecha para hablar directamente con nuestro equipo de soporte." 
+    {
+        id: 4,
+        question: "Hablar con un humano",
+        answer: "¡Sin problema! Puedes usar el botón de WhatsApp de la derecha para hablar directamente con nuestro equipo de soporte."
     }
 ];
 
@@ -64,27 +64,24 @@ export default function ShopAssistant() {
     };
 
     const handleCategoryStock = (category) => {
-        const categoryProducts = products.filter(p => p.category === category);
+        // 1. Buscamos los productos de esta categoría
+        const lista = products.filter(p => p.category === category);
 
-        // Extraer marca del nombre (asumimos que la primera palabra es la marca)
-        const getBrand = (name) => name.split(' ')[0];
+        // 2. Marcas con stock (sumando sus unidades)
+        const nombresMarcas = [...new Set(lista.filter(p => p.stock > 0).map(p => p.name.split(' ')[0]))];
+        const marcasConStock = nombresMarcas.map(marca => {
+            let suma = 0;
+            lista.filter(p => p.name.startsWith(marca)).forEach(p => suma += p.stock);
+            return `${marca} (${suma} uds)`;
+        });
 
-        const withStock = [...new Set(categoryProducts.filter(p => p.stock > 0).map(p => getBrand(p.name)))];
-        const noStock = [...new Set(categoryProducts.filter(p => p.stock === 0).map(p => getBrand(p.name)))];
+        // 3. Productos sin stock
+        const agotados = lista.filter(p => p.stock === 0).map(p => `${p.name} (Sin stock)`);
 
-        let responseText = `Para la categoría **${category}**: \n\n`;
-
-        if (withStock.length > 0) {
-            responseText += `✅ **Con stock:** ${withStock.join(', ')}. \n`;
-        }
-
-        if (noStock.length > 0) {
-            responseText += `❌ **Sin stock:** ${noStock.join(', ')}. \n`;
-        }
-
-        if (categoryProducts.length === 0) {
-            responseText = `Lo siento, no he encontrado productos en la categoría ${category}.`;
-        }
+        // 4. Escribimos la respuesta
+        let respuesta = `En ${category}: \n\n`;
+        if (marcasConStock.length > 0) respuesta += `✅ Marcas: ${marcasConStock.join(', ')}. \n`;
+        if (agotados.length > 0) respuesta += `❌ ${agotados.join(', ')}. \n`;
 
         setMessages(prev => [...prev, { type: 'user', text: `Stock de ${category}` }]);
         setIsTyping(true);
@@ -92,7 +89,7 @@ export default function ShopAssistant() {
 
         setTimeout(() => {
             setIsTyping(false);
-            setMessages(prev => [...prev, { type: 'bot', text: responseText }]);
+            setMessages(prev => [...prev, { type: 'bot', text: respuesta }]);
         }, 1000);
     };
 

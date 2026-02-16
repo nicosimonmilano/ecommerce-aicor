@@ -15,7 +15,7 @@ class ProductSeeder extends Seeder
         // Datos de prueba para la tienda (32 productos tecnológicos divididos en 2 paginas, 16 en cada una)
         $products = [
             [
-                'name' => 'Laptop Gamer Legion 5',
+                'name' => 'Portátil Gamer Legion 5',
                 'description' => 'Portátil gaming con RTX 4060, perfecto para jugar a todo.',
                 'price' => 1299.99,
                 'stock' => 15,
@@ -94,6 +94,7 @@ class ProductSeeder extends Seeder
                 'image_url' => 'https://via.placeholder.com/300?text=SSD+990+Pro',
                 'created_at' => now(), 'updated_at' => now()
             ],
+            
         ];
 
         DB::table('products')->insert($products);

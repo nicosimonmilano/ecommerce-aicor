@@ -71,6 +71,12 @@ export default function ProductList() {
     // Obtener categorías únicas
     const categories = ['Todos', ...new Set(products.map(p => p.category))];
 
+    // Función simple para contar cuántos modelos hay por categoría
+    const getCount = (catName) => {
+        if (catName === 'Todos') return products.length; 
+        return products.filter(p => p.category === catName).length;
+    };
+
     // Productos relacionados para el modal
     const relatedProducts = quickViewProduct
         ? products.filter(p => p.category === quickViewProduct.category && p.id !== quickViewProduct.id).slice(0, 4)
@@ -106,12 +112,15 @@ export default function ProductList() {
                     <button
                         key={category}
                         onClick={() => handleCategoryChange(category)}
-                        className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedCategory === category
+                        className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${selectedCategory === category
                             ? 'bg-black text-white shadow-lg scale-105'
                             : 'bg-white text-gray-500 border border-gray-100 hover:border-gray-300 hover:bg-gray-50'
                             }`}
                     >
-                        {category}
+                        <span>{category}</span>
+                        <span className={`text-[10px] px-2 py-0.5 rounded-full ${selectedCategory === category ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-400'}`}>
+                            {getCount(category)}
+                        </span>
                     </button>
                 ))}
             </div>
@@ -137,9 +146,9 @@ export default function ProductList() {
                                 <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center font-semibold text-gray-400 uppercase tracking-widest text-xs">
                                     Agotado
                                 </div>
-                            ) : product.stock < 6 ? (
+                            ) : product.stock < 10 ? (
                                 <div className="absolute top-4 right-4 bg-orange-500 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-lg animate-bounce-subtle">
-                                    ¡SOLO {product.stock}!
+                                    ¡Solo quedan {product.stock}!
                                 </div>
                             ) : null}
 
