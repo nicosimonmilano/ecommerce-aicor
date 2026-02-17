@@ -1,3 +1,4 @@
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useState, useContext, useEffect } from 'react';
 import { CartContext } from '../context/CartContext';
 import { ToastContainer, toast } from 'react-toastify';
@@ -11,10 +12,19 @@ export default function ProductList() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const { addToCart } = useContext(CartContext);
+    const [searchParams, setSearchParams] = useSearchParams();
 
     // Estados para Paginación, Filtrado y Vista Rápida
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedCategory, setSelectedCategory] = useState('Todos');
+
+    // Sincronizar categoría con la URL al cargar. Esto lo pongo para poder acceder a cada categoria segun pulse en las tarjetas del HOME.
+    useEffect(() => {
+        const cat = searchParams.get('category');
+        if (cat) {
+            setSelectedCategory(cat);
+        }
+    }, [searchParams]);
     const [quickViewProduct, setQuickViewProduct] = useState(null);
     const productsPerPage = 12; // Bajamos un poco para que se vea mejor en móviles
 
@@ -66,6 +76,14 @@ export default function ProductList() {
     const handleCategoryChange = (category) => {
         setSelectedCategory(category);
         setCurrentPage(1); // Resetear a la primera página al filtrar
+
+        // Actualizamos la URL para que sea coherente
+        if (category === 'Todos') {
+            searchParams.delete('category');
+        } else {
+            searchParams.set('category', category);
+        }
+        setSearchParams(searchParams);
     };
 
     // Obtener categorías únicas
@@ -73,7 +91,7 @@ export default function ProductList() {
 
     // Función simple para contar cuántos modelos hay por categoría
     const getCount = (catName) => {
-        if (catName === 'Todos') return products.length; 
+        if (catName === 'Todos') return products.length;
         return products.filter(p => p.category === catName).length;
     };
 
@@ -125,15 +143,15 @@ export default function ProductList() {
                 ))}
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6 xl:gap-x-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-4 sm:gap-x-8">
                 {currentProducts.map((product, index) => (
                     <div
                         key={product.id}
                         onClick={() => setQuickViewProduct(product)}
-                        className="group relative bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col overflow-hidden animate-fade-in-up cursor-pointer"
+                        className="group relative bg-white rounded-2xl sm:rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col overflow-hidden animate-fade-in-up cursor-pointer"
                         style={{ animationDelay: `${index * 50}ms` }}
                     >
-                        <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden bg-gray-50/50 group-hover:bg-gray-50 transition-colors duration-500 lg:aspect-none lg:h-72 flex items-center justify-center p-8 relative">
+                        <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden bg-gray-50/50 group-hover:bg-gray-50 transition-colors duration-500 lg:aspect-none h-48 sm:h-72 flex items-center justify-center p-4 sm:p-8 relative">
                             <img
                                 src={product.image_url}
                                 alt={product.name}
@@ -143,27 +161,27 @@ export default function ProductList() {
 
                             {/* Badger de Stock */}
                             {product.stock === 0 ? (
-                                <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center font-semibold text-gray-400 uppercase tracking-widest text-xs">
+                                <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center font-semibold text-gray-400 uppercase tracking-widest text-[10px] sm:text-xs">
                                     Agotado
                                 </div>
                             ) : product.stock < 10 ? (
-                                <div className="absolute top-4 right-4 bg-orange-500 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-lg animate-bounce-subtle">
-                                    ¡Solo quedan {product.stock}!
+                                <div className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-orange-500 text-white text-[8px] sm:text-[10px] font-bold px-2 py-0.5 sm:px-3 sm:py-1 rounded-full shadow-lg animate-bounce-subtle">
+                                    ¡Solo {product.stock}!
                                 </div>
                             ) : null}
 
-                            <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div className="absolute bottom-4 left-4 hidden sm:block opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <span className="bg-white/90 backdrop-blur-md text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm text-gray-900 border border-gray-100">
                                     VISTA RÁPIDA
                                 </span>
                             </div>
                         </div>
 
-                        <div className="flex flex-1 flex-col p-6">
-                            <h3 className="text-base font-semibold text-gray-900 mb-1 group-hover:text-black transition-colors">
+                        <div className="flex flex-1 flex-col p-4 sm:p-6">
+                            <h3 className="text-sm sm:text-base font-semibold text-gray-900 mb-1 group-hover:text-black transition-colors truncate sm:whitespace-normal">
                                 {product.name}
                             </h3>
-                            <p className="text-sm text-gray-500 line-clamp-2 mb-4 font-light leading-relaxed">
+                            <p className="hidden sm:block text-sm text-gray-500 line-clamp-2 mb-4 font-light leading-relaxed">
                                 {product.description || "Descripcion por defecto"}
                             </p>
 
@@ -171,8 +189,9 @@ export default function ProductList() {
                                 <p className="text-xl font-bold text-gray-900">
                                     {new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(product.price)}
                                 </p>
+                                {/* Boton para añadir a la cesta directamente sin entrar al producto*/}
                                 <button
-                                    className={`rounded-full p-3 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 ${product.stock === 0
+                                    className={`rounded-full p-2 sm:p-3 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 ${product.stock === 0
                                         ? 'bg-gray-100 text-gray-300 cursor-not-allowed'
                                         : 'bg-black text-white hover:bg-gray-800 shadow-md hover:shadow-lg active:scale-90'
                                         }`}
@@ -180,7 +199,7 @@ export default function ProductList() {
                                     disabled={product.stock === 0}
                                     title={product.stock === 0 ? "Agotado" : "Añadir al carrito"}
                                 >
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 sm:w-5 sm:h-5">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                     </svg>
                                 </button>

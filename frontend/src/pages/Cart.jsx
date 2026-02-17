@@ -48,7 +48,7 @@ export default function Cart() {
     }
 
     return (
-        <div className="container mx-auto py-12 px-6 mt-16 animate-fade-in-up">
+        <div className="container mx-auto py-17 px-6 animate-fade-in-up">
             <h1 className="text-4xl font-bold tracking-tighter mb-12 text-gray-900 border-b border-gray-100 pb-8 flex items-baseline gap-4">
                 Tu Carrito
                 <span className="text-lg text-gray-400 font-light">{getCartCount()} {getCartCount() === 1 ? 'artículo' : 'artículos'}</span>
@@ -60,7 +60,7 @@ export default function Cart() {
                     {cart.map((item, index) => (
                         <div
                             key={item.product.id}
-                            className="group flex flex-col sm:flex-row items-center gap-8 p-6 bg-white rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 animate-fade-in-up"
+                            className="group flex flex-col sm:flex-row items-center gap-4 sm:gap-8 p-6 bg-white rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 animate-fade-in-up"
                             style={{ animationDelay: `${index * 100}ms` }}
                         >
                             <div className="w-32 h-32 bg-gray-50 rounded-2xl flex items-center justify-center p-4 overflow-hidden group-hover:bg-white transition-colors duration-300">
@@ -83,8 +83,8 @@ export default function Cart() {
                                 </div>
                             </div>
 
-                            <div className="flex items-center gap-8">
-                                <div className="flex items-center gap-3 bg-gray-50 rounded-full px-4 py-2 border border-gray-100">
+                            <div className="flex items-center gap-3 sm:gap-8 w-full sm:w-auto justify-between sm:justify-end">
+                                <div className="flex items-center gap-2 sm:gap-3 bg-gray-50 rounded-full px-3 sm:px-4 py-2 border border-gray-100">
                                     <button
                                         onClick={() => updateQuantity(item.product.id, -1)}
                                         className="w-6 h-6 flex items-center justify-center rounded-full hover:bg-white transition-all text-gray-400 hover:text-black active:scale-75 shadow-none hover:shadow-sm"
@@ -100,7 +100,7 @@ export default function Cart() {
                                     </button>
                                 </div>
 
-                                <div className="text-xl font-bold text-gray-900 min-w-[100px] text-right">
+                                <div className="text-lg sm:text-xl font-bold text-gray-900 min-w-[80px] sm:min-w-[100px] text-right">
                                     {new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(item.product.price * item.quantity)}
                                 </div>
 
