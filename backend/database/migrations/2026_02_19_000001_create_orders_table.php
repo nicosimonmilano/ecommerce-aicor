@@ -12,13 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            // Relación con el usuario que compra
-            // Nota: Asumimos que la tabla users ya existe (por defecto en Laravel)
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            
-            $table->decimal('total_amount', 10, 2); // Total de la compra
-            $table->enum('status', ['pending', 'completed', 'cancelled'])->default('pending'); // Estado del pedido
+            $table->string('id')->primary(); // ID string like "ORD-2026-001"
+            $table->string('user_email');
+            $table->string('user_name')->nullable();
+            $table->decimal('total', 10, 2);
+            $table->string('status')->default('Completado');
+            $table->string('payment_method')->nullable();
+            $table->string('shipping_address')->nullable();
+            $table->string('date')->nullable();
             $table->timestamps();
         });
     }

@@ -13,11 +13,20 @@ class OrderItem extends Model
         'order_id',
         'product_id',
         'quantity',
-        'unit_price'
+        'price',
+        'name',
+        'image_url',
+        'subtotal',
+    ];
+
+    protected $casts = [
+        'price' => 'float',
+        'quantity' => 'integer',
+        'subtotal' => 'float',
     ];
 
     /**
-     * Relación: Un detalle pertenece a un pedido.
+     * Get the order that owns the order item.
      */
     public function order()
     {
@@ -25,10 +34,14 @@ class OrderItem extends Model
     }
 
     /**
-     * Relación: Un detalle hace referencia a un producto.
+     * Get the product associated with the order item.
      */
     public function product()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class)->withDefault([
+            'name' => 'Producto Eliminado',
+            'image_url' => 'https://via.placeholder.com/150',
+            'price' => 0,
+        ]); // Si se borra el producto, devolvemos uno por defecto pero mantenemos el item histórico
     }
 }
