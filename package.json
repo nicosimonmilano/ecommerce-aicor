@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"npm run dev --prefix frontend\" \"C:/xampp/php/php.exe -S localhost:8002 -t backend\""
+    "dev": "concurrently \"npm run dev --prefix frontend\" \"cd backend && C:/laragon/bin/php/php-8.3.28-Win32-vs16-x64/php.exe artisan serve --host=127.0.0.1 --port=8000\""
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,8 @@
   "homepage": "https://github.com/nicosimonmilano/ecommerce-aicor#readme",
   "devDependencies": {
     "concurrently": "^9.2.1"
+  },
+  "dependencies": {
+    "html-to-image": "^1.11.13"
   }
 }
