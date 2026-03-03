@@ -12,7 +12,7 @@ export default function Login() {
         const userData = jwtDecode(credentialResponse.credential);
         console.log("Datos del usuario:", userData);
 
-        // Guardamos los datos en localStorage para usarlos en el perfil
+        // Guardamos los datos en localStorage para usarlos en el perfil(localstorage lo uso para guardar datos del usuario, esta definido en el storage.d.ts )
         localStorage.setItem('user_logged_in', 'true');
         localStorage.setItem('user_data', JSON.stringify({
             name: userData.name,

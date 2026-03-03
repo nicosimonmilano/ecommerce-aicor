@@ -7,15 +7,32 @@ import WhatsAppButton from './components/WhatsAppButton'; {/*Boton de whatsapp*/
 import ShopAssistant from './components/ShopAssistant'; {/*Boton de "chatbot" para dudas frecuentes*/ }
 import Footer from './components/Footer';
 
-import { GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleOAuthProvider } from '@react-oauth/google'; // Uso este método de autenticación con Google porque así saltamos el paso de tener laravel de intermediario con react, lo hacemos todo a traves del frontend.
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Orders from './pages/Orders';
+import Loading from './pages/Loading';
+import { useState, useEffect } from 'react';
 
 function App() {
-  const GOOGLE_CLIENT_ID = "821803811027-sb5hrhophg083mopmenfuc1q12a10c7t.apps.googleusercontent.com"; // Aquí va el ID de Google Cloud que se nos proporciona al crear el cliente
+  const GOOGLE_CLIENT_ID = "821803811027-sb5hrhophg083mopmenfuc1q12a10c7t.apps.googleusercontent.com"; // Esto lo scaamos de google cloud (parte donde creas un proyecto, pantalla de consentimiento...)
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulamos una carga inicial de 2 segundos
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>

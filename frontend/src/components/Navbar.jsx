@@ -1,12 +1,26 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useContext, useState, useEffect } from 'react';
 import { CartContext } from '../context/CartContext';
+//import * as htmlToImage from 'html-to-image'; esto lo hago para pasar el logo a png
+
 
 export default function Navbar() {
   const { getCartCount } = useContext(CartContext);
   const cartItemCount = getCartCount();
   const navigate = useNavigate();
   const location = useLocation();
+  /*const exportLogo = () => { Lo comento porque lo he usado solo una vez para descargar el logo ya que está hecho con código. 
+  const node = document.getElementById('logo-exportar');
+
+  htmlToImage.toPng(node, { backgroundColor: '' })
+    .then((dataUrl) => {
+      const link = document.createElement('a');
+      link.download = 'logo.png';
+      link.href = dataUrl;
+      link.click();
+    });
+};*/
+  
 
   // Estados
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -34,9 +48,9 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo AICOR */}
-        <Link to="/" className="text-2xl font-bold tracking-tighter text-gray-900 group flex items-center gap-1 transition-all">
+        <Link to="/" id="logo-exportar" className="text-2xl font-bold tracking-tighter text-gray-900 group flex items-center gap-1 transition-all">
           <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center text-white mr-1 group-hover:rotate-12 transition-transform duration-300">A</div>
-          <span>Tienda</span><span className="font-light text-gray-400">AICOR</span>
+          <span>Tienda</span><span className="font-light text-gray-400">AI-COR</span>
         </Link>
 
         {/*MENU ESCRITORIO (Solo sale en pantallas grandes)*/}
@@ -50,6 +64,10 @@ export default function Navbar() {
           <Link to="/contact" className="text-sm font-medium text-gray-500 hover:text-black transition-all relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-black after:transition-all hover:after:w-full">
             Contacto
           </Link>
+          {/*<button onClick={exportLogo}> descarga de logo
+            Descargar Logo
+          </button>*/}
+
 
           {/* Botón del Carrito */}
           <Link to="/cart" className="relative group p-2 text-gray-500 hover:text-black transition-colors rounded-full hover:bg-gray-50">

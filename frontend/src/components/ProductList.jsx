@@ -32,7 +32,7 @@ export default function ProductList() {
         const fetchProducts = async () => {
             try {
                 setLoading(true);
-                const response = await fetch('/api/shop_api.php', { cache: 'no-store' });
+                const response = await fetch('/api/products', { cache: 'no-store' });
                 if (!response.ok) throw new Error('Error al cargar productos');
                 const data = await response.json();
                 setProducts(data);

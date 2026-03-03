@@ -4,7 +4,7 @@ export default function WhatsAppButton() {
     const [isVisible, setIsVisible] = useState(false);
     const [showBubble, setShowBubble] = useState(false);
 
-    // Aparecer con retraso para no agobiar al entrar
+    // Aparecer con retraso
     useEffect(() => {
         const timer = setTimeout(() => setIsVisible(true), 2000);
         const bubbleTimer = setTimeout(() => setShowBubble(true), 5000);

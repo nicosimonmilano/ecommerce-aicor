@@ -1,18 +1,24 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CartContext } from '../context/CartContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Loading from './Loading';
 
 export default function Cart() {
-    const { cart, removeFromCart, updateQuantity, getCartCount } = useContext(CartContext);
+    const { cart, removeFromCart, updateQuantity, getCartCount, clearCart } = useContext(CartContext);
+    const navigate = useNavigate();
+    const [isProcessing, setIsProcessing] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
     const FREE_SHIPPING_MIN = 100;
 
-    // 1. Calcular el Subtotal (lo que valen los productos)
+    // Calculo del Subtotal (lo que valen los articulos por su cantidad)
     let subtotal = 0;
     cart.forEach(item => {
         subtotal = subtotal + (item.product.price * item.quantity);
     });
 
-    // 2. ¿Cuánto cuesta el envío?
+    // Envío
     const isFreeShipping = subtotal >= FREE_SHIPPING_MIN;
 
     let shippingCost = 7.99; // Precio de envío estándar
@@ -22,13 +28,81 @@ export default function Cart() {
 
     const total = subtotal + shippingCost;
 
-    // 3. Porcentaje para la barra de progreso
+    // Barra de progreso de envío gratis
     const progress = Math.min((subtotal / FREE_SHIPPING_MIN) * 100, 100);
 
-    const handleCheckout = () => {
-        alert("¡Funcionalidad de Checkout próximamente!");
+    //Esta función se ejecuta al pulsar Finalizar Compra, hace un POST al backend con los productos del carrito
+    const handleCheckout = async () => {
+
+        //1: El usuario ha iniciado sesión?
+        const estaLogueado = localStorage.getItem('user_logged_in') === 'true';
+        if (!estaLogueado) {
+            toast.info('Inicia sesión para completar tu compra', { theme: 'dark' });
+            navigate('/login');
+            return; // Si no está logueado, no seguimos 
+        }
+
+        //2: Sacar los datos del usuario (email y nombre)
+        const datosUsuario = JSON.parse(localStorage.getItem('user_data') || '{}');
+
+        //3: Activar el estado de "procesando" (para mostrar el spinner)
+        setIsProcessing(true);
+
+        try {
+            //4: Preparar los productos del carrito para enviarlos
+            // Solo mandamos el id del producto y la cantidad (el precio lo calcula el servidor)
+            const itemsParaEnviar = cart.map(item => ({
+                product_id: item.product.id,
+                quantity: item.quantity
+            }));
+
+            //5: Enviar la petición POST al backend
+            const respuesta = await fetch('/api/checkout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    user_email: datosUsuario.email,
+                    user_name: datosUsuario.name,
+                    items: itemsParaEnviar
+                })
+            });
+
+            //6: Leer la respuesta del servidor
+            const datos = await respuesta.json();
+
+            //7: Hubo algún error? (por ejemplo, sin stock)
+            if (!respuesta.ok) {
+                throw new Error(datos.error || 'Error al procesar el pedido');
+            }
+
+            //8: Compra completada: activar pantalla de carga y vaciar el carrito
+            setIsSuccess(true);
+            clearCart();
+
+            // Mostrar un mensaje de éxito
+            toast.success('¡Pedido realizado con éxito! ' + datos.order_id, {
+                theme: 'dark',
+                autoClose: 3000
+            });
+
+            //9: Redirigir a Mis Pedidos después de 1.5 segundos (sensación premium)
+            setTimeout(() => {
+                navigate('/orders');
+            }, 1500);
+
+        } catch (error) {
+            // Si algo falla, mostramos el error al usuario
+            toast.error(error.message || 'Error al conectar con el servidor');
+        } finally {
+            // Siempre desactivamos el spinner al terminar
+            setIsProcessing(false);
+        }
     };
 
+    // Si la compra ha tenido éxito, mostramos la pantalla de carga premium
+    if (isSuccess) {
+        return <Loading />;
+    }
 
     if (cart.length === 0) {
         return (
@@ -164,16 +238,27 @@ export default function Cart() {
 
                         <button
                             onClick={handleCheckout}
-                            className="w-full bg-black text-white py-5 rounded-full font-bold hover:bg-gray-800 transition-all shadow-lg hover:shadow-2xl active:scale-[0.98] flex justify-center items-center gap-3 group"
+                            disabled={isProcessing}
+                            className={`w-full py-5 rounded-full font-bold transition-all shadow-lg hover:shadow-2xl active:scale-[0.98] flex justify-center items-center gap-3 group ${isProcessing ? 'bg-gray-400 cursor-not-allowed' : 'bg-black hover:bg-gray-800 text-white'}`}
                         >
-                            <span>Finalizar Compra</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                            </svg>
+                            {isProcessing ? (
+                                <>
+                                    <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>
+                                    <span>Procesando...</span>
+                                </>
+                            ) : (
+                                <>
+                                    <span>Finalizar Compra</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    </svg>
+                                </>
+                            )}
                         </button>
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 }
