@@ -1,0 +1,123 @@
+{
+    "info": {
+        "name": "Tienda Aicor - API",
+        "description": "Colección de endpoints para la tienda de prácticas AICOR (DAW). Incluye Productos, Carrito, Checkout e Historial.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Productos",
+            "item": [
+                {
+                    "name": "Obtener Todos los Productos",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8002/shop_api.php",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8002",
+                            "path": [
+                                "shop_api.php"
+                            ]
+                        },
+                        "description": "Devuelve la lista completa de productos desde products.json"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Carrito",
+            "item": [
+                {
+                    "name": "Ver Carrito (Simulado)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8002/cart_api.php",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8002",
+                            "path": [
+                                "cart_api.php"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Checkout",
+            "item": [
+                {
+                    "name": "Realizar Pedido (Checkout)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"user_email\": \"test@aicor.es\",\n    \"user_name\": \"Usuario de Prueba\",\n    \"items\": [\n        {\n            \"product_id\": 1,\n            \"quantity\": 1\n        }\n    ]\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8002/checkout_api.php",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8002",
+                            "path": [
+                                "checkout_api.php"
+                            ]
+                        },
+                        "description": "Procesa la compra, descuenta stock y guarda el pedido."
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Pedidos",
+            "item": [
+                {
+                    "name": "Historial de Pedidos",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8002/orders_api.php?email=test@aicor.es",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8002",
+                            "path": [
+                                "orders_api.php"
+                            ],
+                            "query": [
+                                {
+                                    "key": "email",
+                                    "value": "test@aicor.es"
+                                }
+                            ]
+                        },
+                        "description": "Obtiene los pedidos realizados por un email específico."
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ]
+}
