@@ -88,7 +88,7 @@ export default function Home() {
                 <div className="max-w-2xl mx-auto">
                     <h2 className="text-4xl font-bold tracking-tighter text-gray-900 mb-8">Nuestra Filosofía</h2>
                     <p className="text-gray-500 font-light leading-relaxed italic">
-                        "Aqui metemos un texto de ejemplo"
+                        "Texto de ejemplo"
                     </p>
                 </div>
             </section>

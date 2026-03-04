@@ -14,20 +14,11 @@ Sistema de comercio electrónico para la prueba técnica de AICOR, desarrollado 
 - [Pruebas Unitarias (TDD)](#-pruebas-unitarias-tdd)
 
 ## 📝 Descripción del Proyecto
-Tienda AI-cor es una plataforma de e-commerce que implementa:
-
-- **Catálogo de productos** dinámico cargado desde JSON.
-- **Gestión de carrito de compra** (LocalStorage y API).
-- **Flujo de Checkout completo** con descuento de stock en tiempo real.
-- **Historial de pedidos** por usuario tras sesión iniciada con Google.
-- **Validación de stock** en el servidor para evitar compras inválidas.
-- **Integración con Google OAuth** para autenticación segura.
-
-### 🚀 Mejoras y Correcciones (Febrero 2026)
-- **Solución SSL (Problemas con Avast):** Se ha implementado un parche en la configuración de certificados de PHP para permitir el uso de Composer a pesar de la interceptación de antivirus.
-- **Checkout:** Implementación de lógica de negocio en PHP para descontar stock y guardar pedidos en formato JSON persistente.
-- **Pruebas Automatizadas:** Implementación de tests unitarios con PHPUnit para asegurar el correcto funcionamiento del inventario.
-- **Documentación Postman:** Creación de una colección completa para pruebas de API sin necesidad de frontend.
+- **Catálogo dinámico**: Gestión de productos mediante base de datos relacional MySQL.
+- **Carrito de compra**: Persistencia local y validación con el backend.
+- **Checkout Seguro**: Procesamiento de pedidos con transacciones de base de datos y control de inventario.
+- **PDF de Pedido**: Generación automática de comprobantes profesionales descargables.
+- **Google OAuth**: Acceso seguro y rápido mediante cuentas de Google.
 
 ## 🛠 Tecnologías Utilizadas
 
@@ -35,7 +26,8 @@ Tienda AI-cor es una plataforma de e-commerce que implementa:
 - **PHP 8.3**
 - **Composer** (Gestor de dependencias)
 - **PHPUnit** (Framework para pruebas unitarias)
-- **JSON** (Almacenamiento de datos/persistencia)
+- **MySQL** (Persistencia de datos)
+- **JSON** (Formato de importación/exportación inicial)
 - **CORS** (Configuración de acceso seguro)
 
 ### Frontend
@@ -48,25 +40,21 @@ Tienda AI-cor es una plataforma de e-commerce que implementa:
 ## 📁 Estructura del Proyecto
 ```
 ecommerce_aicor/
-├── backend/                   # Backend PHP
-│   ├── tests/                      # Pruebas Unitarias (TDD)
-│   ├── vendor/                     # Dependencias de PHP (Ignorado en Git)
-│   ├── products.json               # Base de datos de productos
-│   ├── orders.json                 # Registro de pedidos realizados
-│   ├── shop_api.php                # API de catálogo
-│   ├── cart_api.php                # API de carrito
-│   ├── checkout_api.php            # API de procesamiento de compra
-│   ├── orders_api.php              # API de historial
-│   └── composer.json               # Dependencias del backend
-├── frontend/                  # Frontend React (Vite)
+├── backend/                   # Lógica de servidor y API Laravel
+│   ├── app/                        # Modelos y Controladores (Lógica de negocio)
+│   ├── database/                   # Migraciones y Seeders (Base de datos MySQL)
+│   ├── routes/                     # Definición de rutas API (api.php)
+│   ├── tests/                      # Pruebas Unitarias (Stock check)
+│   ├── vendor/                     # Dependencias (Ignorado en Git)
+│   └── composer.json               # Configuración Backend
+├── frontend/                  # Interfaz de usuario React
 │   ├── src/
-│   │   ├── components/                 # Navbar, WhatsAppButton, Loading...
-│   │   ├── pages/                      # Home, Cart, Orders, Login...
-│   │   ├── context/                    # CartContext (Estado global)
-│   │   └── App.jsx                     # Punto de entrada React
-│   ├── package.json                # Dependencias del frontend
-│   └── vite.config.js              # Configuración de Vite y Proxy
-├── Aicor_API.postman_collection.json  # Documentación de API
+│   │   ├── components/                 # UI y Ticket PDF
+│   │   ├── pages/                      # Vistas (Home, Cart, Orders, Login)
+│   │   └── context/                    # Estado global del carrito
+│   └── package.json                # Configuración Frontend
+├── Aicor_API.postman_collection.json # Pruebas de API
+├── apuntes.md                 # Guía rápida para la defensa
 └── README.md
 ```
 
@@ -97,7 +85,14 @@ cd backend
 composer install
 cp .env.example .env
 php artisan key:generate
+php artisan migrate --seed
 ```
+
+### 4. Configuración de Base de Datos
+1. Abre **Laragon** (o tu gestor MySQL).
+2. Crea una base de datos llamada `ecommerce_aicor`.
+3. Asegúrate de que el puerto en el archivo `.env` del backend coincida con tu configuración (por defecto hemos configurado el **3307**).
+
 
 ### 4. Iniciar la aplicación
 Desde la raíz del proyecto, ejecuta el comando unificado:
@@ -113,17 +108,16 @@ Este comando arranca:
 ### Funcionamiento de la Tienda
 1. **Login**: Inicia sesión con Gmail (Google OAuth).
 2. **Compra**: Añade productos al carrito. Si el subtotal supera los 100€, el envío es gratuito.
-3. **Checkout**: Finaliza la compra. Se descontará el stock de `products.json` y se guardará la transacción en `orders.json`.
-4. **Pedidos**: Consulta tu historial en la sección "Mis Pedidos".
+3. **Checkout**: Finaliza la compra. El sistema descuenta stock en MySQL y genera el comprobante.
+4. **Pedidos**: Descarga tus tickets en PDF desde la sección "Mis Pedidos".
 
 ## 🔌 API Endpoints (Guía Postman)
 
 Puedes importar el archivo `Aicor_API.postman_collection.json` directamente en Postman.
 
-- **GET** `/shop_api.php`: Listar todos los productos.
-- **GET** `/cart_api.php`: Consultar estado del carrito en servidor.
-- **POST** `/checkout_api.php`: Procesar compra (Body JSON requerido).
-- **GET** `/orders_api.php?email=...`: Consultar historial de un usuario.
+- **GET** `/api/products`: Listar todos los productos disponibles.
+- **POST** `/api/checkout`: Procesar compra (Valida stock y genera pedido).
+- **GET** `/api/orders?email=...`: Consultar historial de un usuario específico.
 
 ## 🧪 Pruebas Unitarias (TDD)
 

@@ -17,7 +17,7 @@ import Loading from './pages/Loading';
 import { useState, useEffect } from 'react';
 
 function App() {
-  const GOOGLE_CLIENT_ID = "821803811027-sb5hrhophg083mopmenfuc1q12a10c7t.apps.googleusercontent.com"; // Esto lo scaamos de google cloud (parte donde creas un proyecto, pantalla de consentimiento...)
+  const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID; // Se lee desde el archivo .env del frontend
 
   const [isLoading, setIsLoading] = useState(true);
 

@@ -1,5 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import Ticket from '../components/Ticket';
+import { toPng } from 'html-to-image';
+import { jsPDF } from 'jspdf';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Orders() {
     const navigate = useNavigate();
@@ -7,6 +12,9 @@ export default function Orders() {
     // Estado para guardar los pedidos y si estamos cargando
     const [pedidos, setPedidos] = useState([]);
     const [cargando, setCargando] = useState(true);
+    const [selectedOrder, setSelectedOrder] = useState(null);
+    const [isGenerating, setIsGenerating] = useState(false);
+    const ticketRef = useRef(null);
 
     // Pedir los pedidos al servidor al cargar la página
     useEffect(() => {
@@ -32,6 +40,42 @@ export default function Orders() {
             });
 
     }, []); // El array vacío [] significa "solo ejecutar una vez al cargar"
+
+    const downloadTicket = async (order) => {
+        setSelectedOrder(order);
+        setIsGenerating(true);
+
+        // Esperamos un pequeño delay para que React renderice el componente Ticket con los nuevos datos
+        setTimeout(async () => {
+            if (!ticketRef.current) {
+                setIsGenerating(false);
+                return;
+            }
+
+            try {
+                // Capturamos el componente Ticket como imagen PNG
+                const dataUrl = await toPng(ticketRef.current, {
+                    quality: 1,
+                    backgroundColor: 'white',
+                    pixelRatio: 2 // Mayor calidad
+                });
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                const imgProps = pdf.getImageProperties(dataUrl);
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+                pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                pdf.save(`Ticket_AICOR_${order.id}.pdf`);
+
+                toast.info('Ticket descargado correctamente', { theme: 'dark' });
+            } catch (error) {
+                console.error('Error generando el ticket:', error);
+                toast.error('No se pudo generar el PDF del ticket');
+            } finally {
+                setIsGenerating(false);
+            }
+        }, 100);
+    };
 
     // Mientas carga mostrar un spinner
     if (cargando) {
@@ -72,6 +116,16 @@ export default function Orders() {
                                         {new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(pedido.total)}
                                     </p>
                                     <p className="text-xs text-gray-400 mt-1">{pedido.date}</p>
+                                    <button
+                                        onClick={() => downloadTicket(pedido)}
+                                        disabled={isGenerating}
+                                        className="mt-4 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-gray-500 hover:text-black transition-colors"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                        </svg>
+                                        Descargar Ticket
+                                    </button>
                                 </div>
                             </div>
 
@@ -112,6 +166,12 @@ export default function Orders() {
                     </button>
                 </div>
             )}
+
+            {/* Componente de Ticket oculto para captura */}
+            <div style={{ position: 'absolute', top: '-5000px', left: 0 }}>
+                {selectedOrder && <Ticket order={selectedOrder} ticketRef={ticketRef} />}
+            </div>
+            <ToastContainer />
         </div>
     );
 }

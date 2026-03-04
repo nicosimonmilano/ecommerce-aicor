@@ -20,7 +20,7 @@ export default function Navbar() {
       link.click();
     });
 };*/
-  
+
 
   // Estados
   const [isLoggedIn, setIsLoggedIn] = useState(false);
