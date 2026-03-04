@@ -77,6 +77,7 @@ cd ecommerce_aicor
 ### 2. Configurar el Frontend
 ```bash
 npm install
+cp frontend/.env.example frontend/.env
 ```
 
 ### 3. Configurar el Backend
@@ -101,7 +102,7 @@ npm run dev
 ```
 Este comando arranca:
 - **Frontend**: http://localhost:5173
-- **Backend API**: http://localhost:8002
+- **Backend API**: http://localhost:8000
 
 ## 👥 Uso
 
