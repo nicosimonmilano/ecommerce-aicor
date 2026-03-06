@@ -1,0 +1,290 @@
+[
+    {
+        "id": 1,
+        "name": "Lenovo Legion 5 Gamer",
+        "category": "Portátiles",
+        "description": "Portátil gaming de alto rendimiento con gráficos RTX 4060 y pantalla de 144Hz.",
+        "price": 1299.99,
+        "image_url": "https:\/\/img.icons8.com\/fluency-systems-regular\/400\/laptop.png",
+        "stock": 15
+    },
+    {
+        "id": 2,
+        "name": "iPhone 15 Pro",
+        "category": "Móviles",
+        "description": "El iPhone más avanzado con acabado en titanio y el potente chip A17 Pro.",
+        "price": 1199,
+        "image_url": "https:\/\/img.icons8.com\/fluency-systems-regular\/400\/iphone.png",
+        "stock": 23
+    },
+    {
+        "id": 3,
+        "name": "Dell Monitor 4K UltraSharp",
+        "category": "Periféricos",
+        "description": "Monitor profesional de 27 pulgadas con resolución Ultra HD y colores precisos.",
+        "price": 450.5,
+        "image_url": "https:\/\/img.icons8.com\/fluency-systems-regular\/400\/monitor.png",
+        "stock": 0
+    },
+    {
+        "id": 4,
+        "name": "Corsair Teclado Mecánico K70",
+        "category": "Periféricos",
+        "description": "Teclado RGB con switches mecánicos táctiles para una escritura rápida y cómoda.",
+        "price": 99.99,
+        "image_url": "https:\/\/img.icons8.com\/fluency-systems-regular\/400\/keyboard.png",
+        "stock": 27
+    },
+    {
+        "id": 5,
+        "name": "Logitech G502 Gaming Mouse",
+        "category": "Periféricos",
+        "description": "El ratón más vendido con sensor Hero 25K y pesas ajustables.",
+        "price": 59.99,
+        "image_url": "https:\/\/img.icons8.com\/fluency-systems-regular\/400\/mouse.png",
+        "stock": 39
+    },
+    {
+        "id": 6,
+        "name": "HyperX Cloud II Gaming Headset",
+        "category": "Audio",
+        "description": "Sonido envolvente 7.1 y comodidad extrema para largas sesiones de juego.",
+        "price": 89.95,
+        "image_url": "https:\/\/img.icons8.com\/fluency-systems-regular\/400\/headphones.png",
+        "stock": 17
+    },
+    {
+        "id": 7,
+        "name": "Secretlab Magnus Pro Gaming Chair",
+        "category": "Accesorios",
+        "description": "Ergonomía premium y materiales de alta calidad para tu setup.",
+        "price": 429,
+        "image_url": "https:\/\/img.icons8.com\/?size=100&id=GPwlSVgoHfyw&format=png&color=000000",
+        "stock": 12
+    },
+    {
+        "id": 8,
+        "name": "Samsung Galaxy Tab S9 Ultra",
+        "category": "Tablets",
+        "description": "Potencia y pantalla AMOLED para productividad y entretenimiento.",
+        "price": 799.99,
+        "image_url": "https:\/\/img.icons8.com\/?size=100&id=2318&format=png&color=000000",
+        "stock": 22
+    },
+    {
+        "id": 9,
+        "name": "Apple Watch Series 9 GPS",
+        "category": "Accesorios",
+        "description": "Tu compañero de salud y fitness con sensor de oxígeno y pantalla brillante.",
+        "price": 449,
+        "image_url": "https:\/\/img.icons8.com\/fluency-systems-regular\/400\/apple-watch.png",
+        "stock": 35
+    },
+    {
+        "id": 10,
+        "name": "Samsung 990 Pro SSD 1TB NVMe",
+        "category": "Componentes",
+        "description": "Velocidades de lectura de hasta 7000MB\/s para cargar todo al instante.",
+        "price": 119.9,
+        "image_url": "https:\/\/img.icons8.com\/?size=100&id=176&format=png&color=000000",
+        "stock": 50
+    },
+    {
+        "id": 11,
+        "name": "NVIDIA GeForce RTX 4070 Ti",
+        "category": "Componentes",
+        "description": "Arquitectura Ada Lovelace con DLSS 3 para jugar a 1440p con todo al máximo.",
+        "price": 649.99,
+        "image_url": "https:\/\/img.icons8.com\/fluency-systems-regular\/400\/video-card.png",
+        "stock": 0
+    },
+    {
+        "id": 12,
+        "name": "AMD Ryzen 7 7800X3D Processor",
+        "category": "Componentes",
+        "description": "El procesador definitivo para gaming con tecnología 3D V-Cache.",
+        "price": 389,
+        "image_url": "https:\/\/img.icons8.com\/?size=100&id=1581&format=png&color=000000",
+        "stock": 14
+    },
+    {
+        "id": 13,
+        "name": "Sony Alpha A6400 Mirrorless",
+        "category": "Fotografía",
+        "description": "Cámara mirrorless compacta con enfoque automático ultrarrápido ideal para vlogging.",
+        "price": 999,
+        "image_url": "https:\/\/img.icons8.com\/fluency-systems-regular\/400\/slr-camera.png",
+        "stock": 6
+    },
+    {
+        "id": 14,
+        "name": "JBL Charge 5 Bluetooth Speaker",
+        "category": "Audio",
+        "description": "Sonido potente y batería para 20 horas, resistente al agua y al polvo.",
+        "price": 149.99,
+        "image_url": "https:\/\/img.icons8.com\/?size=100&id=TvcvEoyZmOLq&format=png&color=000000",
+        "stock": 27
+    },
+    {
+        "id": 15,
+        "name": "TP-Link AX5400 WiFi 6 Router",
+        "category": "Periféricos",
+        "description": "Velocidades WiFi de hasta 5.4 Gbps para streaming 8K y gaming sin lag.",
+        "price": 179.9,
+        "image_url": "https:\/\/img.icons8.com\/?size=100&id=24653&format=png&color=000000",
+        "stock": 19
+    },
+    {
+        "id": 16,
+        "name": "ASUS VivoBook 15 OLED",
+        "category": "Portátiles",
+        "description": "Portátil elegante y ligero para estudio y oficina con pantalla NanoEdge.",
+        "price": 699,
+        "image_url": "https:\/\/img.icons8.com\/fluency-systems-regular\/400\/laptop.png",
+        "stock": 11
+    },
+    {
+        "id": 17,
+        "name": "Logitech C920 HD Pro Webcam",
+        "category": "Periféricos",
+        "description": "Full HD 1080p para videollamadas nítidas y streaming de calidad.",
+        "price": 79.99,
+        "image_url": "https:\/\/img.icons8.com\/fluency-systems-regular\/400\/webcam.png",
+        "stock": 33
+    },
+    {
+        "id": 18,
+        "name": "WD My Passport 2TB External HDD",
+        "category": "Componentes",
+        "description": "Almacenamiento portátil y fiable para tus fotos, vídeos y archivos.",
+        "price": 65,
+        "image_url": "https:\/\/img.icons8.com\/fluency-systems-regular\/400\/hdd.png",
+        "stock": 45
+    },
+    {
+        "id": 19,
+        "name": "Secretlab Titan EVO 2022",
+        "category": "Accesorios",
+        "description": "La silla definitiva para largas jornadas frente al PC.",
+        "price": 499,
+        "image_url": "https:\/\/img.icons8.com\/?size=100&id=GPwlSVgoHfyw&format=png&color=000000",
+        "stock": 8
+    },
+    {
+        "id": 20,
+        "name": "Shure SM7B Vocal Microphone",
+        "category": "Audio",
+        "description": "El micrófono estándar de la industria para podcasting y estudio.",
+        "price": 399,
+        "image_url": "https:\/\/img.icons8.com\/fluency-systems-regular\/400\/microphone.png",
+        "stock": 4
+    },
+    {
+        "id": 21,
+        "name": "Sony PlayStation 5",
+        "category": "Consolas",
+        "description": "Experimenta tiempos de carga ultrarrápidos y juegos en 4K.",
+        "price": 549.99,
+        "image_url": "https:\/\/img.icons8.com\/?size=100&id=7314&format=png&color=000000",
+        "stock": 10
+    },
+    {
+        "id": 22,
+        "name": "Microsoft Xbox Series X",
+        "category": "Consolas",
+        "description": "La Xbox más potente de la historia con soporte para 120 FPS.",
+        "price": 499.99,
+        "image_url": "https:\/\/img.icons8.com\/?size=100&id=7314&format=png&color=000000",
+        "stock": 12
+    },
+    {
+        "id": 23,
+        "name": "Nintendo Switch OLED",
+        "category": "Consolas",
+        "description": "Pantalla OLED de 7 pulgadas para colores vibrantes y negro puro.",
+        "price": 349,
+        "image_url": "https:\/\/img.icons8.com\/?size=100&id=7314&format=png&color=000000",
+        "stock": 20
+    },
+    {
+        "id": 24,
+        "name": "Apple MacBook Air M3 13\"",
+        "category": "Portátiles",
+        "description": "Fino, ligero y ahora con el increíble chip M3 de Apple.",
+        "price": 1299,
+        "image_url": "https:\/\/img.icons8.com\/fluency-systems-regular\/400\/laptop.png",
+        "stock": 13
+    },
+    {
+        "id": 25,
+        "name": "Apple iPad Air 5th Gen",
+        "category": "Tablets",
+        "description": "Potencia del chip M1 en un diseño espectacular.",
+        "price": 599,
+        "image_url": "https:\/\/img.icons8.com\/?size=100&id=2318&format=png&color=000000",
+        "stock": 25
+    },
+    {
+        "id": 26,
+        "name": "Samsung Galaxy S24 Ultra",
+        "category": "Móviles",
+        "description": "El teléfono Android definitivo con IA avanzada y S-Pen.",
+        "price": 1459,
+        "image_url": "https:\/\/img.icons8.com\/fluency-systems-regular\/400\/iphone.png",
+        "stock": 16
+    },
+    {
+        "id": 27,
+        "name": "Google Pixel 8 Pro",
+        "category": "Móviles",
+        "description": "La mejor cámara en un smartphone con la IA de Google.",
+        "price": 999,
+        "image_url": "https:\/\/img.icons8.com\/fluency-systems-regular\/400\/iphone.png",
+        "stock": 21
+    },
+    {
+        "id": 28,
+        "name": "Auriculares Bose QC45",
+        "category": "Audio",
+        "description": "Cancelación de ruido legendaria y comodidad durante todo el día.",
+        "price": 329,
+        "image_url": "https:\/\/img.icons8.com\/fluency-systems-regular\/400\/headphones.png",
+        "stock": 30
+    },
+    {
+        "id": 29,
+        "name": "LG UltraWide 34\" Curved Monitor",
+        "category": "Periféricos",
+        "description": "Más espacio para tu productividad y una experiencia de cine.",
+        "price": 399,
+        "image_url": "https:\/\/img.icons8.com\/fluency-systems-regular\/400\/monitor.png",
+        "stock": 14
+    },
+    {
+        "id": 30,
+        "name": "Razer BlackWidow V4 Keyboard",
+        "category": "Periféricos",
+        "description": "Interruptores mecánicos táctiles y retroiluminación Chroma RGB.",
+        "price": 169.99,
+        "image_url": "https:\/\/img.icons8.com\/fluency-systems-regular\/400\/keyboard.png",
+        "stock": 20
+    },
+    {
+        "id": 31,
+        "name": "Zowie EC2-C Gaming Mouse",
+        "category": "Periféricos",
+        "description": "El favorito de los jugadores profesionales de eSports por su forma.",
+        "price": 69.99,
+        "image_url": "https:\/\/img.icons8.com\/fluency-systems-regular\/400\/mouse.png",
+        "stock": 15
+    },
+    {
+        "id": 32,
+        "name": "SteelSeries QcK Heavy Mousepad",
+        "category": "Accesorios",
+        "description": "Superficie de tela Legendaria para un control total del ratón.",
+        "price": 29.99,
+        "image_url": "https:\/\/img.icons8.com\/fluency-systems-regular\/400\/large-icons.png",
+        "stock": 60
+    }
+]

@@ -25,17 +25,13 @@ class OrderItem extends Model
         'subtotal' => 'float',
     ];
 
-    /**
-     * Get the order that owns the order item.
-     */
+    // Sacar el pedido al que pertenece este artículo
     public function order()
     {
         return $this->belongsTo(Order::class);
     }
 
-    /**
-     * Get the product associated with the order item.
-     */
+    // Sacar los datos del producto (o uno por defecto si se borró)
     public function product()
     {
         return $this->belongsTo(Product::class)->withDefault([

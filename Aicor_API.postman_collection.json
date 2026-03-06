@@ -91,6 +91,89 @@
                     }
                 }
             ]
+        },
+        {
+            "name": "Administración",
+            "item": [
+                {
+                    "name": "Login Admin",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"password\": \"aicor_admin_2026\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/api/admin/login",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000",
+                            "path": [
+                                "api",
+                                "admin",
+                                "login"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Listar Todos los Pedidos (Admin)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8000/api/admin/orders",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000",
+                            "path": [
+                                "api",
+                                "admin",
+                                "orders"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Crear Producto",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Nuevo iPhone 16\",\n    \"description\": \"Modelo de prueba\",\n    \"price\": 1200,\n    \"stock\": 50,\n    \"image_url\": \"/img/iphone15.png\",\n    \"category\": \"Smartphones\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8000/api/admin/products",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000",
+                            "path": [
+                                "api",
+                                "admin",
+                                "products"
+                            ]
+                        }
+                    }
+                }
+            ]
         }
     ]
 }

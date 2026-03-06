@@ -27,17 +27,13 @@ class Order extends Model
         'total' => 'float',
     ];
 
-    /**
-     * Get the items for the order.
-     */
+    // Relación para sacar los artículos de un pedido
     public function items()
     {
         return $this->hasMany(OrderItem::class);
     }
 
-    /**
-     * Get the user that owns the order.
-     */
+    // Relación para ver el usuario que hizo el pedido (si existe)
     public function user()
     {
         return $this->belongsTo(User::class);

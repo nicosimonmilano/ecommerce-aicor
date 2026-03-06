@@ -12,14 +12,9 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        $jsonPath = 'C:/Users/Nico/OneDrive/Escritorio/products.json';
-        if (!file_exists($jsonPath)) {
-             $jsonPath = 'C:/Users/Nico/Desktop/products.json';
-             if (!file_exists($jsonPath)) {
-                $jsonPath = base_path('products.json');
-                if (!file_exists($jsonPath)) return;
-             }
-        }
+        $jsonPath = database_path('seeders/products.json');
+        
+        if (!file_exists($jsonPath)) return;
 
         $json = file_get_contents($jsonPath);
         $products = json_decode($json, true);

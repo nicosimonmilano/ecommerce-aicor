@@ -14,14 +14,9 @@ class OrderSeeder extends Seeder
      */
     public function run(): void
     {
-        $jsonPath = 'C:/Users/Nico/OneDrive/Escritorio/orders.json';
-        if (!file_exists($jsonPath)) {
-            $jsonPath = 'C:/Users/Nico/Desktop/orders.json';
-            if (!file_exists($jsonPath)) {
-                $jsonPath = base_path('orders.json');
-                if (!file_exists($jsonPath)) return;
-            }
-        }
+        $jsonPath = database_path('seeders/orders.json');
+
+        if (!file_exists($jsonPath)) return;
 
         $json = file_get_contents($jsonPath);
         $ordersData = json_decode($json, true);

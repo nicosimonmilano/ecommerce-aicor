@@ -13,7 +13,7 @@ class OrderController extends Controller
 {
     public function store(Request $request)
     {
-        // Validar datos de entrada - Ajustado a lo que envía el frontend (user_email, user_name)
+        // Validar que los datos del cliente y los productos lleguen bien
         $validatedData = $request->validate([
             'user_email' => 'required|email|max:255',
             'user_name' => 'nullable|string|max:255',
@@ -90,9 +90,7 @@ class OrderController extends Controller
         }
     }
 
-    /**
-     * Display a listing of the resource (Historial de pedidos del usuario).
-     */
+    // Saca el historial de pedidos de un usuario concreto
     public function index(Request $request)
     {
         $email = $request->query('email');

@@ -4,7 +4,7 @@ import { CartProvider } from './context/CartContext';
 import ProductList from './components/ProductList';
 import Cart from './pages/Cart';
 import WhatsAppButton from './components/WhatsAppButton'; {/*Boton de whatsapp*/ }
-import ShopAssistant from './components/ShopAssistant'; {/*Boton de "chatbot" para dudas frecuentes*/ }
+import ShopAssistant from './components/ShopAssistant'; {/*Boton de chatbot para dudas frecuentes*/ }
 import Footer from './components/Footer';
 
 import { GoogleOAuthProvider } from '@react-oauth/google'; // Uso este método de autenticación con Google porque así saltamos el paso de tener laravel de intermediario con react, lo hacemos todo a traves del frontend.
@@ -12,7 +12,14 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
-import Orders from './pages/Orders';
+import UserOrders from './pages/UserOrders';
+
+// Admin
+import AdminLayout from './pages/admin/AdminLayout';
+import AdminProducts from './pages/admin/AdminProducts';
+import AdminOrders from './pages/admin/AdminOrders';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Loading from './pages/Loading';
 import { useState, useEffect } from 'react';
 
@@ -48,7 +55,14 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/contact" element={<Contact />} />
-                <Route path="/orders" element={<Orders />} />
+                <Route path="/orders" element={<UserOrders />} />
+
+                {/* Admin Routes */}
+                <Route path="/admin" element={<AdminLayout />}>
+                  <Route index element={<AdminProducts />} />
+                  <Route path="products" element={<AdminProducts />} />
+                  <Route path="orders" element={<AdminOrders />} />
+                </Route>
 
               </Routes>
             </main>

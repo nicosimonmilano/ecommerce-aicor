@@ -7,9 +7,7 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Lista todos los productos para que se vean en la tienda
     public function index()
     {
         $products = Product::all();

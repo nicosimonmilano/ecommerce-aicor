@@ -19,7 +19,7 @@ Sistema de comercio electrónico para la prueba técnica de AICOR, desarrollado 
 - **Checkout Seguro**: Procesamiento de pedidos con transacciones de base de datos y control de inventario.
 - **PDF de Pedido**: Generación automática de comprobantes profesionales descargables.
 - **Google OAuth**: Acceso seguro y rápido mediante cuentas de Google.
-
+- **Panel de Admin**: Interfaz protegida con clave para gestionar productos y monitorizar pedidos
 ## 🛠 Tecnologías Utilizadas
 
 ### Backend
@@ -50,7 +50,8 @@ ecommerce_aicor/
 ├── frontend/                  # Interfaz de usuario React
 │   ├── src/
 │   │   ├── components/                 # UI y Ticket PDF
-│   │   ├── pages/                      # Vistas (Home, Cart, Orders, Login)
+│   │   ├── pages/                      # Vistas (Home, Cart, UserOrders, Login)
+│   │   │   └── admin/                  # Panel de gestión (Layout, Products, Orders)
 │   │   └── context/                    # Estado global del carrito
 │   └── package.json                # Configuración Frontend
 ├── Aicor_API.postman_collection.json # Pruebas de API
@@ -112,6 +113,12 @@ Este comando arranca:
 3. **Checkout**: Finaliza la compra. El sistema descuenta stock en MySQL y genera el comprobante.
 4. **Pedidos**: Descarga tus tickets en PDF desde la sección "Mis Pedidos".
 
+### Panel de Administración
+1. **Acceso**: Entra en `http://localhost:5173/admin`.
+2. **Seguridad**: Introduce la clave maestra definida en el archivo `.env`.
+3. **Gestión**: Sube nuevos productos, edita el stock o elimina artículos.
+4. **Ventas**: Monitoriza todos los pedidos realizados en tiempo real.
+
 ## 🔌 API Endpoints (Guía Postman)
 
 Puedes importar el archivo `Aicor_API.postman_collection.json` directamente en Postman.
@@ -119,6 +126,11 @@ Puedes importar el archivo `Aicor_API.postman_collection.json` directamente en P
 - **GET** `/api/products`: Listar todos los productos disponibles.
 - **POST** `/api/checkout`: Procesar compra (Valida stock y genera pedido).
 - **GET** `/api/orders?email=...`: Consultar historial de un usuario específico.
+
+#### Rutas Admin
+- **POST** `/api/admin/login`: Validación de la clave maestra.
+- **GET** `/api/admin/orders`: Listado global de pedidos para el admin.
+- **CRUD** `/api/admin/products`: Gestión completa (GET, POST, PUT, DELETE) de inventario.
 
 ## 🧪 Pruebas Unitarias (TDD)
 
